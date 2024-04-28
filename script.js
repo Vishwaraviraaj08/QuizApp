@@ -852,7 +852,7 @@ function addTextToImage() {
 
             ctx.fillStyle = 'black';
             ctx.fillText(domain, 1360, 882);
-            ctx.fillText(mark, 1220, 940);
+            ctx.fillText(mark+"0", 1220, 940);
 
             ctx.font = 'bold 60px Arial';
             const textWidth = ctx.measureText(name).width;
