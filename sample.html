@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Editor</title>
+</head>
+<body>
+<h1>Image Editor</h1>
+<button onclick="editImage()">Edit Image</button>
+<br>
+<canvas id="canvas" style="display:none;"></canvas>
+<a id="downloadLink"  download="edited_image.png">Download Image</a>
+
+<script>
+    function editImage() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const name = "Vishwa Raviraaj S I"
+        const domain = "Artificial Intelligence"
+        const mark = "30"
+
+        const image = new Image();
+        image.onload = function() {
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+
+            ctx.font = 'bold 40px Arial';
+
+            ctx.fillStyle = 'black';
+            ctx.fillText(domain, 1360, 882);
+            ctx.fillText(mark, 1220, 940);
+
+            ctx.font = 'bold 60px Arial';
+            const textWidth = ctx.measureText(name).width;
+            const x = (canvas.width - textWidth) / 2;
+            ctx.fillText(name, x, 750);
+
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = canvas.toDataURL();
+            downloadLink.style.display = 'block';
+        };
+        image.src = 'certificate.png';
+    }
+</script>
+</body>
+</html>

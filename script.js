@@ -835,30 +835,43 @@ function sendData(button) {
 
 
 
-// function addTextToImage() {
-//         const textInput = categories[buttonValue];
-//         const img = new Image();
-//         img.onload = function() {
-//             const canvas = document.createElement('canvas');
-//             canvas.width = img.width;
-//             canvas.height = img.height;
-//             const ctx = canvas.getContext('2d');
-//             ctx.drawImage(img, 0, 0);
-//             ctx.font = '45px Arial';
-//             ctx.fillStyle = 'black';
-//             ctx.fillText(textInput, 2150, 450);
-//             document.getElementById('output').src = canvas.toDataURL();
-//             canvas.toBlob(function(blob) {
-//                 const url = URL.createObjectURL(blob);
-//                 const a = document.createElement('a');
-//                 a.href = url;
-//                 a.download = 'certificate.png';
-//                 document.body.appendChild(a);
-//                 a.click();
-//                 document.body.removeChild(a);
-//                 URL.revokeObjectURL(url);
-//             });
-//         };
-//         img.src = 'certificate.png';
-//
-// }
+function addTextToImage() {
+        const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const mark = userScore;
+    const name = username;
+    const domain = categories[buttonValue];
+
+    const image = new Image();
+        image.onload = function() {
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+
+            ctx.font = 'bold 40px Arial';
+
+            ctx.fillStyle = 'black';
+            ctx.fillText(domain, 1360, 882);
+            ctx.fillText(mark, 1220, 940);
+
+            ctx.font = 'bold 60px Arial';
+            const textWidth = ctx.measureText(name).width;
+            const x = (canvas.width - textWidth) / 2;
+            ctx.fillText(name, x, 750);
+
+
+            document.getElementById('output').src = canvas.toDataURL();
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'certificate.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        };
+        image.src = 'certificate.png';
+
+}
